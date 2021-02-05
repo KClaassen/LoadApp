@@ -9,6 +9,8 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.net.Uri
 import android.os.Bundle
+import android.view.View
+import android.widget.RadioButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import kotlinx.android.synthetic.main.activity_main.*
@@ -34,6 +36,30 @@ class MainActivity : AppCompatActivity() {
             download()
         }
     }
+
+    fun onRadioButtonClicked(view: View) {
+        if (view is RadioButton) {
+            // Is the button now checked?
+            val checked = view.isChecked
+
+            // Check which radio button was clicked
+            when (view.getId()) {
+                R.id.glide_button ->
+                    if (checked) {
+                        // Pirates are the best
+                    }
+                R.id.loadapp_button ->
+                    if (checked) {
+                        // Ninjas rule
+                    }
+                R.id.retrofit_button ->
+                    if (checked) {
+                        // Ninjas rule
+                    }
+            }
+        }
+    }
+
 
     private val receiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
