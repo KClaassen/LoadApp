@@ -47,6 +47,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.glide_button ->
                     if (checked) {
                         // Pirates are the best
+                        download()
                     }
                 R.id.loadapp_button ->
                     if (checked) {

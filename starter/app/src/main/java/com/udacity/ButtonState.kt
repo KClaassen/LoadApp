@@ -1,8 +1,8 @@
 package com.udacity
 
 
-sealed class ButtonState {
-    object Clicked : ButtonState()
-    object Loading : ButtonState()
-    object Completed : ButtonState()
+sealed class ButtonState(var customButtonText: Int) {
+    object Clicked : ButtonState(R.string.button_default)
+    object Loading : ButtonState(R.string.button_loading)
+    object Completed : ButtonState(R.string.button_default)
 }
