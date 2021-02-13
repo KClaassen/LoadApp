@@ -27,6 +27,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         android:orientation="vertical"
+        android:onClick="onRadioButtonClicked"
         app:layout_constraintBottom_toTopOf="@+id/custom_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,7 +37,6 @@
             android:id="@+id/glide_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="onRadioButtonClicked"
             android:text="@string/glide_button"
             android:textSize="@dimen/radio_button_text_size" />
 
@@ -44,7 +44,6 @@
             android:id="@+id/loadapp_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="onRadioButtonClicked"
             android:paddingTop="16dp"
             android:paddingBottom="16dp"
             android:text="@string/loadapp_button"
@@ -54,7 +53,6 @@
             android:id="@+id/retrofit_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="onRadioButtonClicked"
             android:textSize="@dimen/radio_button_text_size"
             android:text="@string/retrofit_button" />
     </RadioGroup>
@@ -68,7 +66,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.95"
-        android:onClick="onRadioButtonClicked"/>
+        app:layout_constraintVertical_bias="0.95" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

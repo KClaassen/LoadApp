@@ -56,19 +56,9 @@ class LoadingButton @JvmOverloads constructor(
             ButtonState.Clicked->{
                 paintCircle.color = context.getColor(R.color.colorAccent)
             }
-            ButtonState.Completed-> {
-                Log.d("LoadingButton", " ButtonState.Completed,Default")
-
-                valueAnimator.cancel()
-                paintCircle.color = context.getColor(R.color.button_color_default)
-                value = 0f
-                invalidate()
-            }
-
 
             ButtonState.Loading -> {
-                Log.d("LoadingButtonnn", "ButtonState.Loading")
-                paintCircle.color = context.getColor(R.color.colorAccent)
+                Log.d("LoadingButton", "ButtonState.Loading")
                 valueAnimator =
                         ValueAnimator.ofFloat(0.0f, measuredWidth.toFloat()).setDuration(2000).apply {
                             addUpdateListener { valueAnimator ->
@@ -77,12 +67,17 @@ class LoadingButton @JvmOverloads constructor(
                                 width = value * 4
                                 invalidate()
                             }
-                            //repeatCount = ValueAnimator.INFINITE
-                            //repeatMode = ValueAnimator.REVERSE
                         }
-
                 valueAnimator.start()
+            }
 
+            ButtonState.Completed-> {
+                Log.d("LoadingButton", " ButtonState.Completed")
+
+                valueAnimator.cancel()
+                paintCircle.color = context.getColor(R.color.button_color_default)
+                value = 0f
+                invalidate()
             }
         }
 
@@ -90,7 +85,6 @@ class LoadingButton @JvmOverloads constructor(
 
 
     init {
-
         buttonState = ButtonState.Clicked
     }
 
@@ -126,6 +120,10 @@ class LoadingButton @JvmOverloads constructor(
                 paintCircle
         )
 
+    }
+
+    fun loadingState(state: ButtonState) {
+        buttonState = state
     }
 
 

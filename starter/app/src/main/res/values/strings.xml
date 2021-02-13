@@ -7,6 +7,8 @@
     <string name="notification_title">Udacity: Android Kotlin Nanodegree </string>
     <string name="notification_description">The Project 3 repository is downloaded</string>
     <string name="notification_button">See changes</string>
+    <string name="notification_channel_id" translatable="false">loadapp_channel</string>
+    <string name="notification_channel_name" translatable="false">loadapp</string>
 
     <string name="button_name">Click me</string>
     <string name="button_default">Download</string>
@@ -20,4 +22,6 @@
     <string name="glide_repo">https://github.com/bumptech/glide</string>
     <string name="loadapp_repo">https://github.com/bumptech/glide</string>
     <string name="retrofit_repo">https://github.com/square/retrofit</string>
+    <string name="select_repo">Nothing selected, please select a repo to download</string>
+    <string name="detail_button">OK</string>
 </resources>
