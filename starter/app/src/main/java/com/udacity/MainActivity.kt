@@ -8,9 +8,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import android.database.Cursor
 import android.graphics.Color
-import android.graphics.Path
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -83,28 +81,17 @@ class MainActivity : AppCompatActivity() {
         override fun onReceive(context: Context?, intent: Intent?) {
             val id = intent?.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1)
 
-            if (downloadID == id) {
-                if (action.equals(DownloadManager.ACTION_DOWNLOAD_COMPLETE)) {
-                    val query = DownloadManager.Query()
-                    query.setFilterById(intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, 0));
-                    val service = context!!.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
-                    val cursor: Cursor = service.query(query)
-                    if (cursor.moveToFirst()) {
-                        if (cursor.count > 0) {
-                            val status = cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_STATUS))
-                            if (status == DownloadManager.STATUS_SUCCESSFUL) {
-                                loadingButton.loadingState(ButtonState.Completed)
-                                notificationManager.sendNotification(githubRepo.toString(), applicationContext)
-                            } else {
-                                loadingButton.loadingState(ButtonState.Completed)
-                                notificationManager.sendNotification(githubRepo.toString(), applicationContext)
-                            }
-                        }
-                    }
+                if (downloadID == id) {
+                    Log.d("Broadcast Receiver", "Successfull")
+                    loadingButton.loadingState(ButtonState.Completed)
+                    notificationManager.sendNotification(githubRepo.toString(), applicationContext, "Complete")
+                } else {
+                    loadingButton.loadingState(ButtonState.Completed)
+                    notificationManager.sendNotification(githubRepo.toString(), applicationContext, "Failed")
                 }
             }
         }
-    }
+
 
     private fun download() {
         Log.d("download", "true")
