@@ -24,4 +24,6 @@
     <string name="retrofit_repo">https://github.com/square/retrofit</string>
     <string name="select_repo">Nothing selected, please select a repo to download</string>
     <string name="detail_button">OK</string>
+    <string name="file_name">File name</string>
+    <string name="status_textview">Status</string>
 </resources>

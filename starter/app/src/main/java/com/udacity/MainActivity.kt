@@ -15,6 +15,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
+import android.util.Log
 import android.view.View
 import android.widget.RadioButton
 import android.widget.Toast
@@ -43,7 +44,7 @@ class MainActivity : AppCompatActivity() {
 
         registerReceiver(receiver, IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE))
 
-        loadingButton = findViewById(R.id.loadapp_button)
+        loadingButton = findViewById(R.id.custom_button)
         loadingButton.setOnClickListener {
             download()
         }
@@ -106,6 +107,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun download() {
+        Log.d("download", "true")
         if (githubRepo != null) {
             loadingButton.loadingState(ButtonState.Loading)
             notificationManager = ContextCompat.getSystemService(applicationContext, notificationManager::class.java) as NotificationManager
