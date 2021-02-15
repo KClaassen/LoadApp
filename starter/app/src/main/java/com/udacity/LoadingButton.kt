@@ -8,6 +8,7 @@ import android.graphics.Paint
 import android.util.AttributeSet
 import android.util.Log
 import android.view.View
+import androidx.core.content.ContextCompat
 import kotlin.properties.Delegates
 
 class LoadingButton @JvmOverloads constructor(
@@ -15,6 +16,8 @@ class LoadingButton @JvmOverloads constructor(
 ) : View(context, attrs, defStyleAttr) {
     private var widthSize = 0
     private var heightSize = 0
+    private var mBackgroundColor = 0
+    private var mTextColor = 0
 
 
     private var paintButton = Paint(Paint.ANTI_ALIAS_FLAG).apply {
@@ -33,6 +36,11 @@ class LoadingButton @JvmOverloads constructor(
         color = Color.WHITE
     }
 
+    // Paint object for coloring and styling
+    private var paintCircle = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+        color = context.getColor(R.color.colorPrimaryDark)
+    }
+
     private var valueAnimator = ValueAnimator()
 
     var value = 0.0f
@@ -46,9 +54,13 @@ class LoadingButton @JvmOverloads constructor(
         buttonText = context.getString(buttonState.customButtonText)
 
         when (new) {
+            ButtonState.Clicked->{
+                paintCircle.color = context.getColor(R.color.colorAccent)
+            }
 
             ButtonState.Loading -> {
                 Log.d("LoadingButton", "ButtonState.Loading")
+                paintCircle.color = context.getColor(R.color.colorPrimaryDark)
                 valueAnimator =
                         ValueAnimator.ofFloat(0.0f, measuredWidth.toFloat()).setDuration(2000).apply {
                             addUpdateListener { valueAnimator ->
@@ -63,8 +75,8 @@ class LoadingButton @JvmOverloads constructor(
 
             ButtonState.Completed-> {
                 Log.d("LoadingButton", " ButtonState.Completed")
-
                 valueAnimator.cancel()
+                paintCircle.color = context.getColor(R.color.colorPrimaryDark)
                 value = 0f
                 invalidate()
             }
@@ -75,6 +87,19 @@ class LoadingButton @JvmOverloads constructor(
 
     init {
         buttonState = ButtonState.Clicked
+
+        context.theme.obtainStyledAttributes(
+                attrs,
+                R.styleable.LoadingButton,
+                0, 0).apply {
+
+            try {
+                mTextColor = ContextCompat.getColor(context, R.color.white)
+                mBackgroundColor = ContextCompat.getColor(context, R.color.button_color)
+            } finally {
+                recycle()
+            }
+        }
     }
 
     /*Note: A Canvas instance comes as onDraw parameter to draw different shapes.
@@ -96,6 +121,17 @@ class LoadingButton @JvmOverloads constructor(
                 widthSize.toFloat() / 2,
                 heightSize.toFloat() / 2 + textOffset,
                 paintText
+        )
+
+        canvas?.drawArc(
+                widthSize - 145f,
+                heightSize / 2 - 35f,
+                widthSize - 75f,
+                heightSize / 2 + 35f,
+                0F,
+                width,
+                true,
+                paintCircle
         )
     }
 

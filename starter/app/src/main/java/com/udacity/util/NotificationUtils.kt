@@ -47,6 +47,13 @@ fun NotificationManager.sendNotification(messageBody: String, applicationContext
             .setContentIntent(contentPendingIntent)
             .setAutoCancel(true)
 
+            // set the action to open the DetailActivity
+            .addAction(
+                    0,
+                    applicationContext.getString(R.string.notification_action),
+                    contentPendingIntent
+            )
+
             // set priority
             .setPriority(NotificationCompat.PRIORITY_HIGH)
     // call notify
