@@ -33,13 +33,6 @@ class LoadingButton @JvmOverloads constructor(
         color = Color.WHITE
     }
 
-
-    // Paint object for coloring and styling
-    private var paintCircle = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-        color = context.getColor(R.color.colorAccent)
-    }
-
-
     private var valueAnimator = ValueAnimator()
 
     var value = 0.0f
@@ -53,9 +46,6 @@ class LoadingButton @JvmOverloads constructor(
         buttonText = context.getString(buttonState.customButtonText)
 
         when (new) {
-            ButtonState.Clicked->{
-                paintCircle.color = context.getColor(R.color.colorAccent)
-            }
 
             ButtonState.Loading -> {
                 Log.d("LoadingButton", "ButtonState.Loading")
@@ -64,7 +54,7 @@ class LoadingButton @JvmOverloads constructor(
                             addUpdateListener { valueAnimator ->
                                 value = valueAnimator.animatedValue as Float
                                 sweepAngle = value / 8
-                                width = value * 4
+                                width = value * 5
                                 invalidate()
                             }
                         }
@@ -75,7 +65,6 @@ class LoadingButton @JvmOverloads constructor(
                 Log.d("LoadingButton", " ButtonState.Completed")
 
                 valueAnimator.cancel()
-                paintCircle.color = context.getColor(R.color.button_color_default)
                 value = 0f
                 invalidate()
             }
@@ -108,18 +97,6 @@ class LoadingButton @JvmOverloads constructor(
                 heightSize.toFloat() / 2 + textOffset,
                 paintText
         )
-
-        canvas?.drawArc(
-                widthSize - 145f,
-                heightSize / 2 - 35f,
-                widthSize - 75f,
-                heightSize / 2 + 35f,
-                0F,
-                width,
-                true,
-                paintCircle
-        )
-
     }
 
     fun loadingState(state: ButtonState) {

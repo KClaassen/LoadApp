@@ -20,10 +20,11 @@
     <string name="retrofit_button">Retrofit - Type-safe HTTP client for Android and Java by Square, Inc</string>
     
     <string name="glide_repo">https://github.com/bumptech/glide</string>
-    <string name="loadapp_repo">https://github.com/bumptech/glide</string>
+    <string name="loadapp_repo">https://github.com/udacity/nd940-c3-advanced-android-programming-project-starter</string>
     <string name="retrofit_repo">https://github.com/square/retrofit</string>
     <string name="select_repo">Nothing selected, please select a repo to download</string>
     <string name="detail_button">OK</string>
     <string name="file_name">File name</string>
     <string name="status_textview">Status</string>
+    <string name="status">SUCCESS</string>
 </resources>

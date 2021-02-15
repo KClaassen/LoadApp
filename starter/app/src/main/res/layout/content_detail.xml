@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.motion.widget.MotionLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-
+    app:layoutDescription="@xml/content_main_to_content_detail"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".DetailActivity"
@@ -21,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/fileName"
+        android:id="@+id/fileNameField"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/loadapp_button"
@@ -44,16 +45,15 @@
         app:layout_constraintTop_toBottomOf="@+id/filename_textview" />
 
     <TextView
-        android:id="@+id/status"
+        android:id="@+id/statusField"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textSize="@dimen/default_text_size"
-        android:layout_marginStart="25dp"
-        android:layout_marginEnd="25dp"
+        android:layout_marginStart="25dp"        android:layout_marginEnd="25dp"
+        android:text="@string/status"
         app:layout_constraintBaseline_toBaselineOf="@+id/status_textview"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/filename_textview"
-        tools:text="FAIL"/>
+        app:layout_constraintStart_toEndOf="@+id/filename_textview" />
 
     <Button
         android:id="@+id/detail_button"
@@ -69,7 +69,4 @@
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.motion.widget.MotionLayout>
-
-
-<!--    app:layoutDescription="@xml/content_main_to_content_detail"-->
 

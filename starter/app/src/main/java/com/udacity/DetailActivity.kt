@@ -22,6 +22,8 @@ class DetailActivity : AppCompatActivity() {
 
         fileName = intent.getStringExtra("fileName").toString()
         status = intent.getStringExtra("status").toString()
+        fileNameField.text = fileName
+        statusField.text = status
     }
 
     fun returnToMain() {

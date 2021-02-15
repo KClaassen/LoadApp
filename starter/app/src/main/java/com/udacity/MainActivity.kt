@@ -22,7 +22,6 @@ import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import com.udacity.util.sendNotification
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.content_main.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -42,7 +41,7 @@ class MainActivity : AppCompatActivity() {
 
         registerReceiver(receiver, IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE))
 
-        loadingButton = findViewById(R.id.custom_button)
+        loadingButton = findViewById(R.id.loading_button)
         loadingButton.setOnClickListener {
             download()
         }
@@ -50,7 +49,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onRadioButtonClicked(view: View) {
-        custom_button.setOnClickListener {
+        //loading_button.setOnClickListener {
             if (view is RadioButton) {
                 // Is the button now checked?
                 val checked = view.isChecked
@@ -73,7 +72,7 @@ class MainActivity : AppCompatActivity() {
                         Toast.makeText(this, R.string.select_repo, Toast.LENGTH_SHORT).show()
                 }
             }
-        }
+       // }
     }
 
 
@@ -84,7 +83,7 @@ class MainActivity : AppCompatActivity() {
                 if (downloadID == id) {
                     Log.d("Broadcast Receiver", "Successfull")
                     loadingButton.loadingState(ButtonState.Completed)
-                    notificationManager.sendNotification(githubRepo.toString(), applicationContext, "Complete")
+                    notificationManager.sendNotification(githubRepo.toString(), applicationContext, "Success")
                 } else {
                     loadingButton.loadingState(ButtonState.Completed)
                     notificationManager.sendNotification(githubRepo.toString(), applicationContext, "Failed")
@@ -97,7 +96,7 @@ class MainActivity : AppCompatActivity() {
         Log.d("download", "true")
         if (githubRepo != null) {
             loadingButton.loadingState(ButtonState.Loading)
-            notificationManager = ContextCompat.getSystemService(applicationContext, notificationManager::class.java) as NotificationManager
+            notificationManager = ContextCompat.getSystemService(applicationContext, NotificationManager::class.java) as NotificationManager
             createChannel(getString(R.string.notification_channel_id), getString(R.string.notification_channel_name))
 
             val request =
@@ -115,6 +114,7 @@ class MainActivity : AppCompatActivity() {
             downloadID =
                     downloadManager.enqueue(request)// enqueue puts the download request in the queue.
         } else {
+            Log.d("Download", "failed")
             loadingButton.loadingState(ButtonState.Completed)
             Toast.makeText(this, R.string.select_repo, Toast.LENGTH_SHORT).show()
         }
