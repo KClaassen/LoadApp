@@ -92,13 +92,8 @@ class LoadingButton @JvmOverloads constructor(
                 attrs,
                 R.styleable.LoadingButton,
                 0, 0).apply {
-
-            try {
                 mTextColor = ContextCompat.getColor(context, R.color.white)
                 mBackgroundColor = ContextCompat.getColor(context, R.color.button_color)
-            } finally {
-                recycle()
-            }
         }
     }
 
