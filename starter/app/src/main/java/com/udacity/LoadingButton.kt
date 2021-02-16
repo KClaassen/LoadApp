@@ -9,6 +9,7 @@ import android.util.AttributeSet
 import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
+import androidx.core.content.withStyledAttributes
 import kotlin.properties.Delegates
 
 class LoadingButton @JvmOverloads constructor(
@@ -88,12 +89,9 @@ class LoadingButton @JvmOverloads constructor(
     init {
         buttonState = ButtonState.Clicked
 
-        context.theme.obtainStyledAttributes(
-                attrs,
-                R.styleable.LoadingButton,
-                0, 0).apply {
-                mTextColor = ContextCompat.getColor(context, R.color.white)
-                mBackgroundColor = ContextCompat.getColor(context, R.color.button_color)
+        context.withStyledAttributes(attrs, R.styleable.LoadingButton) {
+            mBackgroundColor = getColor(R.styleable.LoadingButton_backgroundColor, 0)
+            mTextColor = getColor(R.styleable.LoadingButton_textColor, 0)
         }
     }
 
